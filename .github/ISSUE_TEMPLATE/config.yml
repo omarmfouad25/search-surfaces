@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Disagree with a conclusion
+    url: https://github.com/omarmfouad25/geo-lab/discussions
+    about: "The priority order and the terminology lock are judgements, not findings. Argue with them in Discussions."

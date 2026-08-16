@@ -1,7 +1,14 @@
 # Contributing
 
-Contributions welcome. This repository is small and opinionated on purpose, so the bar for
-additions is the evidence behind them rather than the volume.
+**The knowledge base is open.** The research layer is one person's argument and the skills are
+maintained, but `knowledge/` is meant to outgrow its author.
+
+**The bar is a source, not credentials.** Nobody here cares where you work. They care whether the
+number resolves.
+
+Start from [`knowledge/_TEMPLATE.md`](knowledge/_TEMPLATE.md) for a new page. Use the issue
+templates for anything smaller, including the one for reporting a stale figure, which needs no PR
+at all.
 
 ## The one rule that matters
 

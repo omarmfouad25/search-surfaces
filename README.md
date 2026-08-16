@@ -1,107 +1,128 @@
-# Search Surfaces
+# GEO Lab
 
-**Agent skills for getting cited by AI search, grounded in primary research rather than vendor blog posts.**
+**Generative Engine Optimization: agent skills, a knowledge base, and independent research into how
+AI search decides what to cite.**
 
-![Skills](https://img.shields.io/badge/skills-4-black)
-![Format](https://img.shields.io/badge/format-SKILL.md-blue)
+![Skills](https://img.shields.io/badge/agent%20skills-4-black)
+![Knowledge](https://img.shields.io/badge/knowledge%20base-open%20to%20contributions-blue)
 ![Citations](https://img.shields.io/badge/every%20number-primary%20sourced-green)
+![CI](https://img.shields.io/badge/rules-enforced%20in%20CI-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-black)
 
-Four Claude Code skills that treat SEO, AEO and GEO as **three surfaces of one asset** instead of
-three disciplines: rank the page, be the answer, be the citation.
+Three surfaces, one asset: **rank the page (SEO), be the answer (AEO), be the citation (GEO).**
 
 ---
 
 ## Why this exists
 
 I went looking for a straight answer on generative engine optimization and mostly found content
-marketing. The same handful of statistics circulate without provenance, most "GEO guides" are
-written by companies selling GEO tools, and a large share of the advice is traditional SEO wearing
-a new acronym.
+marketing. The same handful of statistics circulate without provenance, most guides are published by
+companies selling the remedy, and a large share of the advice is traditional SEO wearing a new
+acronym.
 
-So I read the primary sources instead: the Aggarwal et al. paper that coined the term, the platform
-documentation, and the industry studies that publish their sample sizes. This repository is the
-result, packaged so an agent can execute it.
+So I read the primary sources instead: the paper that coined the term, the platform documentation,
+and the industry studies that publish their sample sizes. **This repository is that research, made
+executable, and then opened up.**
 
-**The three positions this research landed on**, each of which is contestable and each of which the
-skills state openly:
+**The rule that holds the whole thing together: every number resolves to a source, and CI fails the
+build if it does not.** That is the difference between this and another curated list.
 
-1. **Most of the acronyms are aliases.** SEO, AEO and GEO are real and measurably different. AIO,
-   LLMO, GAIO and SXO are marketing. See [`research/the-alphabet-problem.md`](research/the-alphabet-problem.md),
-   which argues the skeptic's case (*"it's all just SEO"*) before disagreeing with it.
-2. **The skeptic is mostly right about substance and mostly wrong about operations.** The underlying
-   craft barely changed. The **measurement** changed completely, and that is why the vocabulary
-   earns its keep.
-3. **Keyword stuffing actively backfires in generative engines.** Not "works less well". Worse than
-   doing nothing, at −9% visibility against baseline `[Aggarwal-2023]`. This is the single biggest
-   divergence from traditional SEO practice.
+## Three layers
+
+| Layer | What it is | Who owns it |
+|---|---|---|
+| **[`knowledge/`](knowledge/)** | How each surface and platform actually behaves | **Open. Community-maintained** |
+| **[`research/`](research/)** | What follows from the evidence, and what is arguable | One author's position, open to challenge |
+| **[`skills/`](skills/)** | Executable agent skills built on both | Maintained, PRs welcome |
+
+Knowledge flows upward. A finding lands in `knowledge/`, and if it changes what you should *do*, the
+skill changes too.
 
 ## The skills
 
-| Skill | What it does | Start here when |
+| Skill | What it does | Reach for it when |
 |---|---|---|
-| **`sl-search-surfaces`** | The hub. Loads the three-surface model, the vocabulary lock and the priority order. Every other skill checks it first. | You want the model, or you are about to run any of the others |
+| **`sl-search-surfaces`** | The hub. The model, the vocabulary lock, the priority order. Every other skill checks it first | You want the model, or you are starting anything else |
 | **`sl-geo-audit`** | Scores a site across Foundations, Answer Engine and Generative Citation, then maps gaps to actions | "Why does the AI never mention us?" |
-| **`sl-citation-content`** | Writes and rewrites paragraphs so an LLM will lift them verbatim | You have content that ranks but never gets quoted |
+| **`sl-citation-content`** | Writes and rewrites paragraphs so an LLM lifts them verbatim | You rank but never get quoted |
 | **`sl-entity-infrastructure`** | Entity graph, schema depth, AI crawler access, `llms.txt` | The machine cannot tell who you are |
 
-They compose. The audit tells you which of the other two you need.
+## The knowledge base
+
+| File | Covers |
+|---|---|
+| [`00-foundations/seo-vs-aeo-vs-geo.md`](knowledge/00-foundations/seo-vs-aeo-vs-geo.md) | The matrix. Where the surfaces overlap and where they genuinely diverge |
+| [`01-platforms/ai-overviews.md`](knowledge/01-platforms/ai-overviews.md) | Google. The mid-rank citation window, structural anatomy, click impact |
+| [`01-platforms/chatgpt-search.md`](knowledge/01-platforms/chatgpt-search.md) | Bing-indexed, Wikipedia-concentrated |
+| [`01-platforms/perplexity.md`](knowledge/01-platforms/perplexity.md) | Live retrieval, freshness-dominant, community-weighted |
+| [`02-signals/llms-txt.md`](knowledge/02-signals/llms-txt.md) | A worked example of evaluating a tactic before adopting it |
+| [`03-measurement/mention-tracking.md`](knowledge/03-measurement/mention-tracking.md) | Citation share, the free method and the tooled one |
+
+## Three findings worth arguing with
+
+Each is stated as contestable, because each one is.
+
+**1. Most of the acronyms are aliases.** SEO, AEO and GEO are real and measurably different. AIO,
+LLMO, GAIO and SXO are marketing. [`research/the-alphabet-problem.md`](research/the-alphabet-problem.md)
+argues the skeptic's case, *"it's all just SEO"*, at full strength before disagreeing with it.
+
+**2. The skeptic is mostly right about substance and mostly wrong about operations.** The underlying
+craft barely changed. The **measurement** changed completely, and that is the only thing that earns
+the vocabulary.
+
+**3. Keyword stuffing actively backfires in generative engines.** Not "helps less". Worse than doing
+nothing, at −9% against baseline `[Aggarwal-2023]`. That is the sharpest divergence from traditional
+SEO instinct, and the single most useful thing in the literature.
 
 ## Install
 
 Claude Code, per project:
 
 ```bash
-git clone https://github.com/omarmfouad25/search-surfaces.git
+git clone https://github.com/omarmfouad25/geo-lab.git
 mkdir -p .claude/skills
-cp -R search-surfaces/skills/* .claude/skills/
+cp -R geo-lab/skills/* .claude/skills/
 ```
 
-Or globally, for every project:
+Or globally:
 
 ```bash
-cp -R search-surfaces/skills/* ~/.claude/skills/
+cp -R geo-lab/skills/* ~/.claude/skills/
 ```
 
-Then invoke by name (`/sl-geo-audit`) or just describe the task and let the model match on the
-skill's triggers. Skills are plain `SKILL.md` files with YAML frontmatter, so they also work in any
-agent runtime that reads that format. Nothing here depends on a plugin manifest.
+Invoke by name (`/sl-geo-audit`) or describe the task and let the model match on the triggers. These
+are plain `SKILL.md` files with YAML frontmatter, so they work in any runtime that reads that format.
+No plugin manifest required. The `sl-` prefix avoids collisions with other skill collections.
 
-The `sl-` prefix exists to prevent collisions with the several other marketing-skill collections you
-may already have loaded.
+## Contributing
 
-## The priority order, which is the most contested thing here
+**The knowledge base is open, and the bar is a source, not credentials.**
 
-```
-SEO first.  GEO next.  AEO last.
-```
+The single most valuable contribution is **a number here that is now wrong**. Everything marked
+`volatile` decays fast. Open an issue with the current figure and its source; you do not need to
+write the fix.
 
-Because roughly half of AI citations still originate from pages already ranking in the top ten, a
-site that cannot rank cannot be cited. GEO outranks AEO because the answer box is a subset of a
-shrinking classic SERP while citation share is the surface actually growing.
+Also wanted: platform behaviour changes, **negative results** (a tactic that measurably did not
+work), and the gaps listed in [`knowledge/README.md`](knowledge/README.md), which currently include
+Claude and Gemini citation behaviour and non-English search.
 
-**This is a judgement call, not a finding.** A reader who weights the zero-click numbers more
-heavily than I do would reasonably put AEO second. The skills state the reasoning so you can
-override it, and `sl-geo-audit` ships a weight profile for exactly that.
+Start with [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`knowledge/_TEMPLATE.md`](knowledge/_TEMPLATE.md).
+
+Disagreeing with a conclusion is welcome. The priority order and the terminology lock are judgements
+and are labelled as such.
 
 ## Freshness, which is this field's real problem
 
-**Every quantitative claim carries a citation key** resolving to
-[`references.md`](references.md). If a number has no key, it is flagged inline as inference.
+**Figures were last validated 2026-05-21.** In this subject that is old. Every file declares:
 
-**Figures were last validated 2026-05-21.** In this subject that is old. AI Overview trigger rates,
-click-loss percentages and platform citation shares all move quarterly, and several of the headline
-numbers in circulation have already doubled once. Each skill declares a `freshness` field:
-
-| Value | Meaning | Re-validate |
+| `freshness` | Meaning | Re-validate |
 |---|---|---|
 | `stable` | Conceptual, unlikely to move | Annually |
 | `drift-watch` | Sound today, mechanism may shift | Quarterly |
-| `volatile` | Platform-specific numbers that move fast | Before you quote them |
+| `volatile` | Platform numbers that move fast | Before you quote them |
 
-**Do not present a `volatile` figure to a client or an audience without re-checking it first.** A
-document arguing that the ground is moving has no business shipping stale numbers, which is a
-mistake I would rather name than repeat.
+**Do not present a `volatile` figure to a client or an audience without re-checking it.** A project
+arguing that the ground is moving has no business shipping stale numbers.
 
 ### The rules are enforced, not just stated
 
@@ -109,41 +130,24 @@ mistake I would rather name than repeat.
 python3 validate.py
 ```
 
-Standard library only, no dependencies. It fails the build if a citation key does not resolve to
-`references.md`, an internal link is broken, a skill is missing a required section or frontmatter
-field, `freshness` holds an undefined value, or an em dash appears anywhere. It runs in CI on every
-push and pull request.
+Standard library only, no dependencies. It fails on an unresolved citation key, a broken internal
+link, a missing required section or frontmatter field, an invalid `freshness` value, or an em dash.
+It runs in CI on every push and pull request.
 
-An unenforced convention is a promise. This one is a test.
+**An unenforced convention is a promise. This one is a test.**
 
 ## What this deliberately is not
 
 - **Not a ranking guarantee.** Nobody can sell you citation. The mechanisms are undocumented and
   change without notice.
-- **Not a tool pitch.** `sl-geo-audit` names DataForSEO, Profound and Otterly because measurement
-  requires some instrument, and it also gives the manual method for people with no budget.
-- **Not vendor research.** Sources are the arXiv paper, platform documentation, and studies that
-  publish their sample sizes. Where a source is a vendor with an interest, it is labelled.
-- **Not an SEO course.** It assumes you already know what a canonical tag is.
-
-## Repository layout
-
-```
-CONTEXT.md                        the hub file: load before running any skill
-references.md                     citation registry, every key resolved
-skills/
-  sl-search-surfaces/SKILL.md     the model, the vocabulary, the priority order
-  sl-geo-audit/SKILL.md           scored audit across three dimensions
-  sl-citation-content/SKILL.md    the 5-element citation pattern
-  sl-entity-infrastructure/SKILL.md  entity graph, schema, crawler access
-research/
-  the-alphabet-problem.md         which acronyms are real, and the skeptic's case
-  aggarwal-2023-findings.md       what the foundational study actually measured
-  scoring-rubric.md               the weights, and why they are set that way
-```
+- **Not vendor research.** Where a source is a vendor with an interest, it is labelled `⚠ Vendor`.
+  Most research in this field is. Making that visible is the point.
+- **Not a link list.** There are several good `awesome-geo` lists. This is not one.
+- **Not an SEO course.** It assumes you know what a canonical tag is.
 
 ## License
 
-MIT. Use it, fork it, ship it in your own collection. Attribution appreciated, not required.
+MIT. Use it, fork it, ship it in your own collection.
 
-Research and skills by [Omar Fouad](https://github.com/omarmfouad25).
+Founded and maintained by [Omar Fouad](https://github.com/omarmfouad25). The research layer is mine;
+the knowledge base belongs to whoever improves it.

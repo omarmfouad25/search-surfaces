@@ -116,7 +116,22 @@ None is required. Where a skill names a tool it also gives the manual path.
 | Crawl and Core Web Vitals | Screaming Frog, PageSpeed Insights | PageSpeed Insights, free |
 | Index coverage | Google Search Console, Bing Webmaster Tools | Both free, and Bing is the one people skip |
 
-## 8. Related files
+## 8. The three layers
+
+| Layer | Question it answers | Who maintains it |
+|---|---|---|
+| `knowledge/` | What is true about how these systems behave | **Open. Community-maintained** |
+| `research/` | What follows from it, and what is arguable | One author's position, open to challenge |
+| `skills/` | What to do about it, executably | Maintained, PRs welcome |
+
+**Knowledge flows upward.** A finding lands in `knowledge/` first. If it changes what someone should
+*do*, the skill is updated too and the change says so. A skill must never assert something the
+knowledge base does not support.
+
+**When running as an agent:** prefer `knowledge/` for "how does X behave", `research/` for "why do
+you claim Y", and `skills/` for "do Z for me".
+
+## 9. Related files
 
 - [`README.md`](README.md), what this repository is and how to install it
 - [`references.md`](references.md), the citation registry
